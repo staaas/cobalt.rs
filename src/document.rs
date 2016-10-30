@@ -260,6 +260,38 @@ impl Document {
         Ok(html.to_owned())
     }
 
+    /// Renders excerpt and adds it to attributes of the document.
+    pub fn render_excerpt(&mut self,
+                          context: &mut Context,
+                          source: &Path,
+                          default_excerpt_separator: &str)
+                          -> Result<String> {
+        let excerpt = {
+            let excerpt_separator: &str = self.attributes
+                .get("excerpt_separator")
+                .and_then(|attr| attr.as_str())
+                .unwrap_or(default_excerpt_separator);
+
+            if let Some(excerpt_str) = self.attributes
+                .get("excerpt")
+                .and_then(|attr| attr.as_str()) {
+                excerpt_str.to_string()
+            } else if excerpt_separator.is_empty() {
+                "".to_owned()
+            } else {
+                self.content.split(excerpt_separator)
+                    .filter(|chunk| !chunk.is_empty())
+                    .next() // first non-empty chunk
+                    .map(|s| s.to_string())
+                    .unwrap_or(self.content.to_string())
+            }
+        };
+
+        let excerpt_html = try!(self.render_html(&excerpt, context, source));
+        self.attributes.insert("excerpt".to_owned(), Value::Str(excerpt_html.clone()));
+        Ok(excerpt_html)
+    }
+
     /// Renders the document to an HTML string.
     ///
     /// Side effects:
