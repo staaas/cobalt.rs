@@ -304,10 +304,10 @@ dependencies = [
  "ignore",
  "itertools",
  "jsonfeed",
- "kstring",
+ "kstring 1.0.6",
  "lazy_static",
  "liquid",
- "liquid-core",
+ "liquid-core 0.26.0",
  "liquid-lib",
  "log",
  "mime_guess",
@@ -339,8 +339,8 @@ dependencies = [
  "chrono",
  "deunicode",
  "itertools",
- "kstring",
- "liquid-core",
+ "kstring 1.0.6",
+ "liquid-core 0.26.0",
  "log",
  "once_cell",
  "regex",
@@ -356,7 +356,7 @@ version = "0.17.0"
 dependencies = [
  "cobalt-config",
  "ignore",
- "liquid-core",
+ "liquid-core 0.26.0",
  "log",
  "once_cell",
  "relative-path",
@@ -1036,6 +1036,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "kstring"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec3066350882a1cd6d950d055997f379ac37fd39f81cd4d8ed186032eb3c5747"
+dependencies = [
+ "serde",
+ "static_assertions",
+]
+
+[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1088,8 +1098,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6d7b354744435fa481a73167dc69afe4af3ecd8056607ef05996c83b85003f83"
 dependencies = [
  "doc-comment",
- "kstring",
- "liquid-core",
+ "kstring 1.0.6",
+ "liquid-core 0.23.2",
  "liquid-derive",
  "liquid-lib",
  "serde",
@@ -1097,19 +1107,36 @@ dependencies = [
 
 [[package]]
 name = "liquid-core"
-version = "0.23.0"
+version = "0.23.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85f6116d9b0d5b3bac6dc2930120f63bc16046b2fe6df48c29de26a36c2bff63"
+checksum = "8eae470f061bfc53607283906de925ab67ed57a341e827146e3b241699a1dcde"
 dependencies = [
  "anymap2",
  "chrono",
  "itertools",
- "kstring",
+ "kstring 1.0.6",
  "liquid-derive",
  "num-traits",
  "pest",
  "pest_derive",
  "serde",
+]
+
+[[package]]
+name = "liquid-core"
+version = "0.26.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a93764837aeac37f14b74708cd88a44d82edfa9ad2b1bcd9a3b4d8802fdd9f98"
+dependencies = [
+ "anymap2",
+ "itertools",
+ "kstring 2.0.0",
+ "num-traits",
+ "pest",
+ "pest_derive",
+ "regex",
+ "serde",
+ "time 0.3.5",
 ]
 
 [[package]]
@@ -1132,8 +1159,8 @@ dependencies = [
  "chrono",
  "deunicode",
  "itertools",
- "kstring",
- "liquid-core",
+ "kstring 1.0.6",
+ "liquid-core 0.23.2",
  "once_cell",
  "percent-encoding",
  "regex",
@@ -2022,7 +2049,14 @@ checksum = "41effe7cfa8af36f439fac33861b66b049edc6f9a32331e2312660529c1c24ad"
 dependencies = [
  "itoa",
  "libc",
+ "time-macros",
 ]
+
+[[package]]
+name = "time-macros"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "25eb0ca3468fc0acc11828786797f6ef9aa1555e4a211a60d64cc8e4d1be47d6"
 
 [[package]]
 name = "tiny_http"
